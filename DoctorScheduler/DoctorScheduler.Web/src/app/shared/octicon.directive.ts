@@ -29,5 +29,4 @@ export class OcticonDirective implements OnInit {
             this.renderer.setStyle(icon, 'height', this.height);
         }
     }
-
 }
