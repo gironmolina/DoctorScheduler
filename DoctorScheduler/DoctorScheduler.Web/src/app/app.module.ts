@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { FormComponent } from './form/form.component';
+import { OcticonDirective } from './shared/octicon.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     SchedulerComponent,
-    FormComponent
+    FormComponent,
+    OcticonDirective 
   ],
   imports: [
     BrowserModule,
