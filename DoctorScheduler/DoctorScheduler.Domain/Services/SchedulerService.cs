@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DoctorScheduler.Entities;
 using DoctorScheduler.Infrastucture.Helpers;
@@ -15,10 +16,10 @@ namespace DoctorScheduler.Domain.Services
             return await HttpClientHelpers.GetAsync<SchedulerEntity>(url).ConfigureAwait(false);
         }
 
-        public async Task<dynamic> TakeSlot()
+        public async Task<HttpResponseMessage> TakeSlot(TakeSlotEntity slot)
         {
             var url = $"{SchedulerUrl}/TakeSlot";
-            return await HttpClientHelpers.GetAsync<SchedulerEntity>(url).ConfigureAwait(false);
+            return await HttpClientHelpers.PostAsync(url, slot).ConfigureAwait(false);
         }
     }
 }

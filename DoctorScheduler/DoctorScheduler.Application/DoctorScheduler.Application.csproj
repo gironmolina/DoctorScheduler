@@ -49,8 +49,10 @@
   <ItemGroup>
     <Compile Include="Dtos\BusySlotDto.cs" />
     <Compile Include="Dtos\FacilityDto.cs" />
+    <Compile Include="Dtos\PatientDto.cs" />
     <Compile Include="Dtos\SchedulerDto.cs" />
     <Compile Include="Dtos\SlotDto.cs" />
+    <Compile Include="Dtos\TakeSlotDto.cs" />
     <Compile Include="Dtos\WorkPeriodDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISchedulerAppService.cs" />

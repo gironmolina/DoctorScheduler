@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Domain.Services;
+using DoctorScheduler.Entities;
 
 namespace DoctorScheduler.Application.Services
 {
@@ -15,17 +17,16 @@ namespace DoctorScheduler.Application.Services
             this.schedulerService = schedulerService ?? throw new ArgumentNullException(nameof(schedulerService));
         }
 
-        public async Task<dynamic> GetWeeklyAvailabilityAdapter(string date)
+        public async Task<SchedulerDto> GetWeeklyAvailabilityAdapter(string date)
         {
             var schedulerEntity = await this.schedulerService.GetWeeklyAvailability(date);
-            var schedulerDto = Mapper.Map<SchedulerDto>(schedulerEntity);
-            return schedulerDto;
+            return Mapper.Map<SchedulerDto>(schedulerEntity);
         }
 
-        public async Task<dynamic> TakeSlotAdapter()
+        public async Task<HttpResponseMessage> TakeSlotAdapter(TakeSlotDto slot)
         {
-            var response = await this.schedulerService.TakeSlot();
-            return response;
+            var slotEntity = Mapper.Map<TakeSlotEntity>(slot);
+            return await this.schedulerService.TakeSlot(slotEntity);
         }
     }
 }

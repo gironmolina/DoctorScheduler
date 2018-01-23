@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="BusySlotEntity.cs" />
     <Compile Include="FacilityEntity.cs" />
+    <Compile Include="PatientEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerEntity.cs" />
     <Compile Include="SlotEntity.cs" />
+    <Compile Include="TakeSlotEntity.cs" />
     <Compile Include="WorkPeriodEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

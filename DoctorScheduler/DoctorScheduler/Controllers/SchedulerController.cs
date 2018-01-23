@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Services;
 
 namespace DoctorScheduler.API.Controllers
@@ -31,12 +32,12 @@ namespace DoctorScheduler.API.Controllers
 
         [HttpPost]
         [Route("api/v1/takeSlot")]
-        public async Task<IHttpActionResult> TakeSlot()
+        public async Task<IHttpActionResult> TakeSlot([FromBody] TakeSlotDto slot)
         {
             try
             {
-                var response = await this.schedulerAppService.TakeSlotAdapter().ConfigureAwait(false);
-                return this.Ok(response);
+                var response = await this.schedulerAppService.TakeSlotAdapter(slot).ConfigureAwait(false);
+                return ResponseMessage(response);
             }
             catch (Exception e)
             {
