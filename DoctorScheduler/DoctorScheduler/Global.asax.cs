@@ -6,6 +6,7 @@ namespace DoctorScheduler.API
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.RegisterMappings();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

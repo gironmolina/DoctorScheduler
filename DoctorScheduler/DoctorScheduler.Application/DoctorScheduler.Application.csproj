@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\BusySlotDto.cs" />
+    <Compile Include="Dtos\FacilityDto.cs" />
+    <Compile Include="Dtos\SchedulerDto.cs" />
+    <Compile Include="Dtos\SlotDto.cs" />
+    <Compile Include="Dtos\WorkPeriodDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISchedulerAppService.cs" />
     <Compile Include="Services\SchedulerAppService.cs" />
@@ -64,8 +69,6 @@
       <Name>DoctorScheduler.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

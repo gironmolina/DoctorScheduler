@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DoctorScheduler.Entities
+﻿namespace DoctorScheduler.Entities
 {
     public class FacilityEntity
     {

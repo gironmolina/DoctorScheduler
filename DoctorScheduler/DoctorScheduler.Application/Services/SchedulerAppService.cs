@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
+using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Domain.Services;
 
 namespace DoctorScheduler.Application.Services
@@ -15,8 +17,9 @@ namespace DoctorScheduler.Application.Services
 
         public async Task<dynamic> GetWeeklyAvailabilityAdapter(string date)
         {
-            var response = await this.schedulerService.GetWeeklyAvailability(date);
-            return response;
+            var schedulerEntity = await this.schedulerService.GetWeeklyAvailability(date);
+            var schedulerDto = Mapper.Map<SchedulerDto>(schedulerEntity);
+            return schedulerDto;
         }
 
         public async Task<dynamic> TakeSlotAdapter()
