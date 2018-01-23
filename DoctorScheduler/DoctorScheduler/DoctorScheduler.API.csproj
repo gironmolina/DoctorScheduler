@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DoctorScheduler</RootNamespace>
-    <AssemblyName>DoctorScheduler</AssemblyName>
+    <RootNamespace>DoctorScheduler.API</RootNamespace>
+    <AssemblyName>DoctorScheduler.API</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -134,12 +134,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoctorScheduler.Application\DoctorScheduler.Application.csproj">
       <Project>{17920450-c2c9-41fc-966b-f17d57445f07}</Project>
       <Name>DoctorScheduler.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoctorScheduler.Domain\DoctorScheduler.Domain.csproj">
+      <Project>{a50f09d3-1265-4c95-952e-c644f32cf714}</Project>
+      <Name>DoctorScheduler.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

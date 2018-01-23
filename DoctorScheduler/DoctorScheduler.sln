@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.API", "DoctorScheduler\DoctorScheduler.API.csproj", "{363432A9-1EB5-4A00-9A36-24C06B30A2EC}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Application", "DoctorScheduler.Application\DoctorScheduler.Application.csproj", "{17920450-C2C9-41FC-966B-F17D57445F07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Entities", "DoctorScheduler.Entities\DoctorScheduler.Entities.csproj", "{EA83444A-FD36-420E-9108-9627B6FCEFBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Domain", "DoctorScheduler.Domain\DoctorScheduler.Domain.csproj", "{A50F09D3-1265-4C95-952E-C644F32CF714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Infrastucture", "DoctorScheduler.Infrastucture\DoctorScheduler.Infrastucture.csproj", "{552922DE-EC14-47D6-8DD2-B11C643F3B7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{EA83444A-FD36-420E-9108-9627B6FCEFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA83444A-FD36-420E-9108-9627B6FCEFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA83444A-FD36-420E-9108-9627B6FCEFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50F09D3-1265-4C95-952E-C644F32CF714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50F09D3-1265-4C95-952E-C644F32CF714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50F09D3-1265-4C95-952E-C644F32CF714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50F09D3-1265-4C95-952E-C644F32CF714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552922DE-EC14-47D6-8DD2-B11C643F3B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552922DE-EC14-47D6-8DD2-B11C643F3B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552922DE-EC14-47D6-8DD2-B11C643F3B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552922DE-EC14-47D6-8DD2-B11C643F3B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

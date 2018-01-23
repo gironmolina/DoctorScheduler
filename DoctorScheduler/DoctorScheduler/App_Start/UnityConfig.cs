@@ -1,8 +1,9 @@
 using DoctorScheduler.Application.Services;
+using DoctorScheduler.Domain.Services;
 using System;
 using Unity;
 
-namespace DoctorScheduler
+namespace DoctorScheduler.API
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.
@@ -23,7 +24,10 @@ namespace DoctorScheduler
 
         public static void RegisterTypes(IUnityContainer container)
         {
-            // Services
+            // Application Services
+            container.RegisterType<ISchedulerAppService, SchedulerAppService>();
+
+            // Domain Services
             container.RegisterType<ISchedulerService, SchedulerService>();
         }
     }

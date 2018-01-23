@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace DoctorScheduler
+namespace DoctorScheduler.API
 {
     public static class WebApiConfig
     {

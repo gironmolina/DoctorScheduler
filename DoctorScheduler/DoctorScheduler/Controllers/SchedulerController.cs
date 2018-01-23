@@ -1,36 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using DoctorScheduler.Application.Services;
 
-namespace DoctorScheduler.Controllers
+namespace DoctorScheduler.API.Controllers
 {
     public class SchedulerController : ApiController
     {
-        private readonly ISchedulerService schedulerService;
+        private readonly ISchedulerAppService schedulerAppService;
 
-        public SchedulerController(ISchedulerService schedulerService)
+        public SchedulerController(ISchedulerAppService schedulerAppService)
         {
-            this.schedulerService = schedulerService ?? throw new ArgumentNullException(nameof(schedulerService));
-        }
-
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            this.schedulerAppService = schedulerAppService ?? throw new ArgumentNullException(nameof(schedulerAppService));
         }
 
         [HttpGet]
         [Route("api/v1/availability")]
-        public async Task<IHttpActionResult> GetWeeklyAvailability()
+        public async Task<IHttpActionResult> GetWeeklyAvailability([FromUri] string date)
         {
             try
             {
-                var response = await this.schedulerService.GetWeeklyAvailability().ConfigureAwait(false);
+                var response = await this.schedulerAppService.GetWeeklyAvailabilityAdapter(date).ConfigureAwait(false);
+                return this.Ok(response);
+            }
+            catch (Exception e)
+            {
+                return this.InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/v1/takeSlot")]
+        public async Task<IHttpActionResult> TakeSlot()
+        {
+            try
+            {
+                var response = await this.schedulerAppService.TakeSlotAdapter().ConfigureAwait(false);
                 return this.Ok(response);
             }
             catch (Exception e)
