@@ -1,23 +1,31 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Services;
 using DoctorScheduler.Infrastucture.Exceptions;
+using Swashbuckle.Swagger.Annotations;
 
 namespace DoctorScheduler.API.Controllers
 {
     public class SchedulerController : ApiController
     {
         private readonly ISchedulerAppService schedulerAppService;
-
+        
         public SchedulerController(ISchedulerAppService schedulerAppService)
         {
             this.schedulerAppService = schedulerAppService ?? throw new ArgumentNullException(nameof(schedulerAppService));
         }
 
+        /// <summary>Get weekly availability.</summary>>
+        /// <response code="200">Returns weekly availability.</response>
+        /// <response code="400">API Bad request.</response>
+        /// <response code="500">Server found an unexpected error.</response>
         [HttpGet]
         [Route("api/v1/availability")]
+        [ResponseType(typeof(SchedulerDto))]
         public async Task<IHttpActionResult> GetWeeklyAvailability([FromUri] string date)
         {
             try
@@ -36,8 +44,13 @@ namespace DoctorScheduler.API.Controllers
             }
         }
 
+        /// <summary>Take a selected slot.</summary>>
+        /// <response code="200">Slot taked successfully.</response>
+        /// <response code="400">API Bad request.</response>
+        /// <response code="500">Server found an unexpected error.</response>
         [HttpPost]
         [Route("api/v1/takeSlot")]
+        [SwaggerResponse(HttpStatusCode.OK, "Slot taked successfully")]
         public async Task<IHttpActionResult> TakeSlot([FromBody] TakeSlotDto slot)
         {
             try

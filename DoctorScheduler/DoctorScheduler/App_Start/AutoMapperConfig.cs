@@ -9,8 +9,6 @@ namespace DoctorScheduler.API
     {
         public static void RegisterMappings()
         {
-            // TODO Swagger, Tests, Validations
-
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<SchedulerEntity, SchedulerDto>();
                 cfg.CreateMap<TakeSlotEntity, TakeSlotDto>();
