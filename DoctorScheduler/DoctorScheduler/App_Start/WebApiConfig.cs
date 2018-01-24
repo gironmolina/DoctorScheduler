@@ -6,9 +6,8 @@ namespace DoctorScheduler.API
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API routes
+            log4net.Config.XmlConfigurator.Configure();
             config.MapHttpAttributeRoutes();
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

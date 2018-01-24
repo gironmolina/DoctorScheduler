@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using DoctorScheduler.API.Filter;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace DoctorScheduler.API
 {
     public class WebApiApplication : System.Web.HttpApplication

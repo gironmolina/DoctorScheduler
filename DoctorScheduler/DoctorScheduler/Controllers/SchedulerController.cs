@@ -6,12 +6,15 @@ using System.Web.Http.Description;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Services;
 using DoctorScheduler.Infrastucture.Exceptions;
+using log4net;
 using Swashbuckle.Swagger.Annotations;
 
 namespace DoctorScheduler.API.Controllers
 {
     public class SchedulerController : ApiController
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(SchedulerController));
+
         private readonly ISchedulerAppService schedulerAppService;
         
         public SchedulerController(ISchedulerAppService schedulerAppService)
@@ -35,6 +38,7 @@ namespace DoctorScheduler.API.Controllers
             }
             catch (Exception e)
             {
+                Logger.Error(e.Message, e);
                 if (e is SchedulerBadRequestException)
                 {
                     return this.BadRequest();
@@ -65,6 +69,7 @@ namespace DoctorScheduler.API.Controllers
             }
             catch (Exception e)
             {
+                Logger.Error(e.Message, e);
                 return this.InternalServerError(e);
             }
         }
