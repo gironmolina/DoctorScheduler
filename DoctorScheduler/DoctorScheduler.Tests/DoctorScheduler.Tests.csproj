@@ -94,6 +94,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\BusySlotDtoBuilder.cs" />
+    <Compile Include="Builders\FacilityDtoBuilder.cs" />
+    <Compile Include="Builders\SchedulerDtoBuilder.cs" />
+    <Compile Include="Builders\SlotDtoBuilder.cs" />
+    <Compile Include="Builders\WorkPeriodDtoBuilder.cs" />
     <Compile Include="Extensions\UnityContainerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SchedulerServiceTests.cs" />
