@@ -9,9 +9,9 @@ namespace DoctorScheduler.Tests.Builders
         public FacilityDtoBuilder WithDefaultValues()
         {
             return this
-                .FacilityId("")
-                .Name("")
-                .Address("");
+                .FacilityId("e9f7bd81-965d-4464-b607-999112b56022")
+                .Name("Las Palmeras")
+                .Address("Plaza de la independencia 36, 38006 Santa Cruz de Tenerife");
         }
 
         public FacilityDtoBuilder FacilityId(string facilityId)

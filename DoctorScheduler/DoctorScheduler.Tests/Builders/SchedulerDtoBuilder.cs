@@ -9,15 +9,11 @@ namespace DoctorScheduler.Tests.Builders
         public SchedulerDtoBuilder WithDefaultValues()
         {
             return this
-                .Facility(new FacilityDto())
-                .SlotDurationMinutes(1)
-                .Monday(new SlotDto())
-                .Tuesday(new SlotDto())
-                .Wednesday(new SlotDto())
-                .Thursday(new SlotDto())
-                .Friday(new SlotDto())
-                .Saturday(new SlotDto())
-                .Sunday(new SlotDto());
+                .Facility(new FacilityDtoBuilder().WithDefaultValues().Build())
+                .SlotDurationMinutes(10)
+                .Monday(new SlotDtoBuilder().WithDefaultValues().Build())
+                .Wednesday(new SlotDtoBuilder().WithDefaultValues().Build())
+                .Friday(new SlotDtoBuilder().WithDefaultValues().Build());
         }
 
         public SchedulerDtoBuilder Facility(FacilityDto facility)

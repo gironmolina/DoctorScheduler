@@ -10,8 +10,8 @@ namespace DoctorScheduler.Tests.Builders
         public SlotDtoBuilder WithDefaultValues()
         {
             return this
-                .BusySlots(new List<BusySlotDto>())
-                .WorkPeriod(new WorkPeriodDto());
+                .WorkPeriod(new WorkPeriodDtoBuilder().WithDefaultValues().Build())
+                .BusySlots(new List<BusySlotDto>());
         }
 
         public SlotDtoBuilder BusySlots(List<BusySlotDto> busySlots)

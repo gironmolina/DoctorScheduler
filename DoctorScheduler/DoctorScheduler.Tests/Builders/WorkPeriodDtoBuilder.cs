@@ -9,10 +9,10 @@ namespace DoctorScheduler.Tests.Builders
         public WorkPeriodDtoBuilder WithDefaultValues()
         {
             return this
-                .StartHour(1)
-                .EndHour(1)
-                .LunchStartHour(1)
-                .LunchEndHour(1);
+                .StartHour(9)
+                .EndHour(17)
+                .LunchStartHour(13)
+                .LunchEndHour(14);
         }
 
         public WorkPeriodDtoBuilder StartHour(int startHour)
