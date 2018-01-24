@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using DoctorScheduler.API.Filter;
 
 namespace DoctorScheduler.API
 {
@@ -8,6 +9,8 @@ namespace DoctorScheduler.API
         {
             AutoMapperConfig.RegisterMappings();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration.Filters.Add(new ValidateModelStateAttribute());
+            GlobalConfiguration.Configuration.Filters.Add(new CheckModelForNullAttribute());
         }
     }
 }
