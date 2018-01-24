@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using DoctorScheduler.Infrastucture.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -19,6 +20,7 @@ namespace DoctorScheduler.Infrastucture.Helpers
         {
             using (var client = new HttpClient())
             {
+                // Workaround to avoid SSL certificate verification
                 ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
                 var byteArray = Encoding.ASCII.GetBytes($"{Username}:{Password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
@@ -26,6 +28,11 @@ namespace DoctorScheduler.Infrastucture.Helpers
 
                 using (var response = await client.GetAsync(url).ConfigureAwait(false))
                 {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new SchedulerBadRequestException();
+                    }
+
                     var json = JObject.Parse(await response.Content.ReadAsStringAsync()
                         .ConfigureAwait(false));
                     return json.ToObject<T>();
@@ -33,10 +40,11 @@ namespace DoctorScheduler.Infrastucture.Helpers
             }
         }
 
-        public static async Task<HttpResponseMessage> PostAsync<T>(string url, T content)
+        public static async Task<bool> PostAsync(string url, object content)
         {
             using (var client = new HttpClient())
             {
+                // Workaround to avoid SSL certificate verification
                 ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
                 var byteArray = Encoding.ASCII.GetBytes($"{Username}:{Password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
@@ -44,7 +52,8 @@ namespace DoctorScheduler.Infrastucture.Helpers
 
                 var postBody = JsonConvert.SerializeObject(content);
                 var stringContent = new StringContent(postBody, Encoding.UTF8, "application/json");
-                return await client.PostAsync(url, stringContent).ConfigureAwait(false);
+                var response = await client.PostAsync(url, stringContent).ConfigureAwait(false);
+                return response.IsSuccessStatusCode;
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Services;
+using DoctorScheduler.Infrastucture.Exceptions;
 
 namespace DoctorScheduler.API.Controllers
 {
@@ -26,6 +27,11 @@ namespace DoctorScheduler.API.Controllers
             }
             catch (Exception e)
             {
+                if (e is SchedulerBadRequestException)
+                {
+                    return this.BadRequest();
+                }
+
                 return this.InternalServerError(e);
             }
         }
@@ -37,7 +43,12 @@ namespace DoctorScheduler.API.Controllers
             try
             {
                 var response = await this.schedulerAppService.TakeSlotAdapter(slot).ConfigureAwait(false);
-                return ResponseMessage(response);
+                if (!response)
+                {
+                    return this.BadRequest();
+                }
+
+                return this.Ok();
             }
             catch (Exception e)
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using DoctorScheduler.Application.Dtos;
@@ -23,7 +22,7 @@ namespace DoctorScheduler.Application.Services
             return Mapper.Map<SchedulerDto>(schedulerEntity);
         }
 
-        public async Task<HttpResponseMessage> TakeSlotAdapter(TakeSlotDto slot)
+        public async Task<bool> TakeSlotAdapter(TakeSlotDto slot)
         {
             var slotEntity = Mapper.Map<TakeSlotEntity>(slot);
             return await this.schedulerService.TakeSlot(slotEntity);

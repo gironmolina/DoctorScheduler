@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DoctorScheduler.Application.Dtos;
 
 namespace DoctorScheduler.Application.Services
@@ -8,6 +7,6 @@ namespace DoctorScheduler.Application.Services
     {
         Task<SchedulerDto> GetWeeklyAvailabilityAdapter(string date);
 
-        Task<HttpResponseMessage> TakeSlotAdapter(TakeSlotDto slot);
+        Task<bool> TakeSlotAdapter(TakeSlotDto slot);
     }
 }
