@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Entities;
 
