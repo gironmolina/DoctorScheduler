@@ -6,6 +6,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { FormComponent } from './form/form.component';
 import { OcticonDirective } from './shared/octicon.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { OcticonDirective } from './shared/octicon.directive';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: 'scheduler', component: SchedulerComponent },

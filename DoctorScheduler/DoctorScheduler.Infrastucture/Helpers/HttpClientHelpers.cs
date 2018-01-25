@@ -21,7 +21,8 @@ namespace DoctorScheduler.Infrastucture.Helpers
             using (var client = new HttpClient())
             {
                 // Workaround to avoid SSL certificate verification
-                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+                ServicePointManager.ServerCertificateValidationCallback +=
+                    (sender, cert, chain, sslPolicyErrors) => true;
                 var byteArray = Encoding.ASCII.GetBytes($"{Username}:{Password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(byteArray));
