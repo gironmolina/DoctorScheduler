@@ -23,22 +23,6 @@ export class SchedulerComponent implements OnInit {
     this.getScheduler(dateFormat);
   }
 
-  nextDate(): void {
-    var date = new Date(this.currentDate);
-    
-    this.currentDate = date;
-    var nextMonday = this.convertDate(date);
-    console.log(nextMonday);
-  } 
-
-  previousDate(): void {
-    var date = new Date(this.currentDate);
-    date.setDate(date.getDate() - (date.getDay() + 6));
-    this.currentDate = date;
-    var prevMonday = this.convertDate(date);
-    console.log(prevMonday);
-  }  
-
   getDate(isNext : boolean): void {
     var date = new Date(this.currentDate);
     if (isNext) {
@@ -48,8 +32,9 @@ export class SchedulerComponent implements OnInit {
       date.setDate(date.getDate() - (date.getDay() + 6));
     }    
     this.currentDate = date;
-    var prevMonday = this.convertDate(date);
-    console.log(prevMonday);
+    var dateFormat = this.convertDate(date);
+    this.getScheduler(dateFormat);
+    console.log(dateFormat);
   }  
 
   getScheduler(date : string): void {
