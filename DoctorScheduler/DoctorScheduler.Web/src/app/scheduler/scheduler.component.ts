@@ -1,4 +1,4 @@
-import { IScheduler } from './Scheduler';
+import { IScheduler, IWeekHours } from './Scheduler';
 import { Component, OnInit } from '@angular/core';
 import { SchedulerService } from "./scheduler.service";
 
@@ -12,11 +12,19 @@ export class SchedulerComponent implements OnInit {
   scheduler: IScheduler;
   errorMessage: string;
   currentDate: Date;
-  
+  source: IWeekHours[] = [];
+
   constructor(private _schedulerService: SchedulerService) {
   }
 
   ngOnInit(): void {
+    for (var i = 0; i < 24; i++) 
+    {
+      this.source.push({
+        Monday: i, Tuesday: i, Wednesday: i, Thursday: i, Friday: i, Saturday: i, Sunday: i
+      });    
+    }
+
     this.currentDate = new Date();
     var mondayDate = this.getMonday(this.currentDate);
     var dateFormat = this.convertDate(mondayDate);
