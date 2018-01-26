@@ -11,32 +11,52 @@ export class SchedulerComponent implements OnInit {
   pageTitle: string = 'Scheduler';
   scheduler: IScheduler;
   errorMessage: string;
+  currentDate: Date;
   
   constructor(private _schedulerService: SchedulerService) {
   }
 
   ngOnInit(): void {
-    var mondayDate = this.getMonday(new Date());
+    this.currentDate = new Date();
+    var mondayDate = this.getMonday(this.currentDate);
     var dateFormat = this.convertDate(mondayDate);
     this.getScheduler(dateFormat);
   }
 
-  private getScheduler(date : string): void {
+  nextDate(): void {
+    var date = new Date(this.currentDate);
+    
+    this.currentDate = date;
+    var nextMonday = this.convertDate(date);
+    console.log(nextMonday);
+  } 
+
+  previousDate(): void {
+    var date = new Date(this.currentDate);
+    date.setDate(date.getDate() - (date.getDay() + 6));
+    this.currentDate = date;
+    var prevMonday = this.convertDate(date);
+    console.log(prevMonday);
+  }  
+
+  getDate(isNext : boolean): void {
+    var date = new Date(this.currentDate);
+    if (isNext) {
+      date.setDate(date.getDate() + (7 - date.getDay()) % 7 + 1);
+    }
+    else {
+      date.setDate(date.getDate() - (date.getDay() + 6));
+    }    
+    this.currentDate = date;
+    var prevMonday = this.convertDate(date);
+    console.log(prevMonday);
+  }  
+
+  getScheduler(date : string): void {
     this._schedulerService.getSchedulers(date)
             .subscribe(scheduler => { this.scheduler = scheduler                    
             },
             error => this.errorMessage = <any>error);
-  }
-
-  private previousDate(): void {
-    console.log("previousDate");
-  }
-
-  private nextDate(): void {
-    var currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + (1 + 7 - currentDate.getDay()) % 7);
-    var qqq = this.convertDate(currentDate);
-    console.log(qqq);
   }
 
   getMonday(date: Date): Date {
@@ -46,24 +66,12 @@ export class SchedulerComponent implements OnInit {
     return new Date(currentDate.setDate(mondayDay));
   }
 
-  getNextDayOfWeek(date, dayOfWeek): string {
-    // Code to check that date and dayOfWeek are valid left as an exercise ;)
-    var resultDate = new Date(date.getTime());
-    var asd = date.getDate();
-    resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
-
-    var qqq = this.convertDate(resultDate);
-
-    return resultDate.toString();
-  }
-
-  convertDate(asd : Date): string {
-    var mm = asd.getMonth() + 1; // getMonth() is zero-based
-    var dd = asd.getDate();
-  
-    return [asd.getFullYear(),
-            (mm>9 ? '' : '0') + mm,
-            (dd>9 ? '' : '0') + dd
+  convertDate(date : Date): string {
+    var month = date.getMonth() + 1;
+    var day = date.getDate();  
+    return [date.getFullYear(),
+            (month > 9 ? '' : '0') + month,
+            (day > 9 ? '' : '0') + day
            ].join('');
   };
 }
