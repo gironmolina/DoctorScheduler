@@ -20,8 +20,15 @@ export class SchedulerComponent implements OnInit {
   ngOnInit(): void {
     for (var i = 0; i < 24; i++) 
     {
+      var timeFormat = (i > 9 ? '' : '0') + i + (':00');
       this.source.push({
-        Monday: i, Tuesday: i, Wednesday: i, Thursday: i, Friday: i, Saturday: i, Sunday: i
+        Monday: timeFormat, 
+        Tuesday: timeFormat, 
+        Wednesday: timeFormat, 
+        Thursday: timeFormat, 
+        Friday: timeFormat, 
+        Saturday: timeFormat, 
+        Sunday: timeFormat
       });    
     }
 
@@ -61,7 +68,7 @@ export class SchedulerComponent implements OnInit {
 
   convertDate(date : Date): string {
     var month = date.getMonth() + 1;
-    var day = date.getDate();  
+    var day = date.getDate(); 
     return [date.getFullYear(),
             (month > 9 ? '' : '0') + month,
             (day > 9 ? '' : '0') + day
