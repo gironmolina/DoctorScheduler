@@ -8,10 +8,8 @@
             <table class="table">
                 <thead>
                     <tr class="bg-success text-white">
-                        <th>
-                            <a (click)="getDate(false)">
-                                <span octicon="chevron-left" fill="white" width="10" height="20"></span>
-                            </a>
+                        <th class="navigation" (click)="getDate(false)">
+                            <a><span octicon="chevron-left" fill="white" width="10" height="20"></span></a>
                         </th>
                         <th>Monday</th>
                         <th>Tuesday</th>
@@ -20,10 +18,8 @@
                         <th>Friday</th>
                         <th>Saturday</th>
                         <th>Sunday</th>
-                        <th>
-                            <a (click)="getDate(true)">
-                                <span octicon="chevron-right" fill="white" width="10" height="20"></span>
-                            </a>
+                        <th class="navigation" (click)="getDate(true)">
+                            <a><span octicon="chevron-right" fill="white" width="10" height="20"></span>                            </a>
                         </th>
                     </tr>
                 </thead>
