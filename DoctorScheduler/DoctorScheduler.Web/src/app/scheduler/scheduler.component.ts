@@ -11,13 +11,14 @@ export class SchedulerComponent implements OnInit {
   pageTitle: string = 'Scheduler';
   scheduler: IScheduler;
   errorMessage: string;
-  currentDate: Date;
+  currentDate: Date  = new Date();
   source: IWeekHours[] = [];
 
   constructor(private _schedulerService: SchedulerService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {     
+    this.getScheduler(this.currentDate);
     for (var i = 0; i < 24; i++) 
     {
       var timeFormat = (i > 9 ? '' : '0') + i + (':00');
@@ -31,11 +32,6 @@ export class SchedulerComponent implements OnInit {
         Sunday: timeFormat
       });    
     }
-
-    this.currentDate = new Date();
-    var mondayDate = this.getMonday(this.currentDate);
-    var dateFormat = this.convertDate(mondayDate);
-    this.getScheduler(dateFormat);
   }
 
   getDate(isNext : boolean): void {
@@ -47,13 +43,13 @@ export class SchedulerComponent implements OnInit {
       date.setDate(date.getDate() - (date.getDay() + 6));
     }    
     this.currentDate = date;
-    var dateFormat = this.convertDate(date);
-    this.getScheduler(dateFormat);
-    console.log(dateFormat);
+    this.getScheduler(this.currentDate);
   }  
 
-  getScheduler(date : string): void {
-    this._schedulerService.getSchedulers(date)
+  getScheduler(date : Date): void {
+    var mondayDate = this.getMonday(date);
+    var dateFormat = this.convertDate(mondayDate);    
+    this._schedulerService.getSchedulers(dateFormat)
             .subscribe(scheduler => { this.scheduler = scheduler                    
             },
             error => this.errorMessage = <any>error);
