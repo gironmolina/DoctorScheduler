@@ -26,7 +26,7 @@ import { ConvertToTimeFormatPipe } from './shared/convert-to-time-format.pipe';
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: 'scheduler', component: SchedulerComponent },
-      { path: 'form', component: FormComponent },
+      { path: 'form/:id', component: FormComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ])
