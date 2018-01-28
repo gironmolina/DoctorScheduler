@@ -24,15 +24,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let product of source">
+                    <tr *ngFor="let item of filterSource">
                         <td></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
-                        <td><a [routerLink]="['/form']">{{product.Monday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Monday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Tuesday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Wednesday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Thursday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Friday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Saturday}}</a></td>
+                        <td><a [routerLink]="['/form']">{{item.Sunday}}</a></td>
                         <td></td>
                     </tr>
                 </tbody>

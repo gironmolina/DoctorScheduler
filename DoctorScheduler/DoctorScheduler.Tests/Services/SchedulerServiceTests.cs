@@ -34,7 +34,7 @@ namespace DoctorScheduler.Tests.Services
         }
 
         [Test]
-        [TestCase("Test")]
+        [TestCase("DayHours")]
         [TestCase("2018")]
         public async Task GetWeeklyAvailability_WithInvalidDate_ShouldReturnBadRequest(string date)
         {

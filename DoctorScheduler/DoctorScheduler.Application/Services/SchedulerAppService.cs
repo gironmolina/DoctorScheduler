@@ -21,6 +21,8 @@ namespace DoctorScheduler.Application.Services
         public async Task<SchedulerDto> GetWeeklyAvailabilityAdapter(string date)
         {
             var schedulerEntity = await this.schedulerService.GetWeeklyAvailability(date);
+
+
             Logger.Debug("Mapping weekly availability response");
             return Mapper.Map<SchedulerDto>(schedulerEntity);
         }
