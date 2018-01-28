@@ -8,6 +8,7 @@ import { FormComponent } from './form/form.component';
 import { OcticonDirective } from './shared/octicon.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ConvertToTimeFormatPipe } from './shared/convert-to-time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     WelcomeComponent,
     SchedulerComponent,
     FormComponent,
+    ConvertToTimeFormatPipe,
     OcticonDirective 
   ],
   imports: [

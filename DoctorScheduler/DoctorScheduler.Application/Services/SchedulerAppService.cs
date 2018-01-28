@@ -18,13 +18,11 @@ namespace DoctorScheduler.Application.Services
             this.schedulerService = schedulerService ?? throw new ArgumentNullException(nameof(schedulerService));
         }
 
-        public async Task<SchedulerDto> GetWeeklyAvailabilityAdapter(string date)
+        public async Task<SchedulerWeekDto> GetWeeklyAvailabilityAdapter(string date)
         {
             var schedulerEntity = await this.schedulerService.GetWeeklyAvailability(date);
-
-
             Logger.Debug("Mapping weekly availability response");
-            return Mapper.Map<SchedulerDto>(schedulerEntity);
+            return Mapper.Map<SchedulerWeekDto>(schedulerEntity);
         }
 
         public async Task<bool> TakeSlotAdapter(TakeSlotDto slot)

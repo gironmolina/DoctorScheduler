@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\BusySlotDto.cs" />
+    <Compile Include="Dtos\WeekHoursDto.cs" />
     <Compile Include="Dtos\FacilityDto.cs" />
     <Compile Include="Dtos\PatientDto.cs" />
     <Compile Include="Dtos\SchedulerDto.cs" />
+    <Compile Include="Dtos\SchedulerWeekDto.cs" />
     <Compile Include="Dtos\SlotDto.cs" />
     <Compile Include="Dtos\TakeSlotDto.cs" />
     <Compile Include="Dtos\WorkPeriodDto.cs" />

@@ -5,7 +5,7 @@ namespace DoctorScheduler.Domain.Services
 {
     public interface ISchedulerService
     {
-        Task<SchedulerEntity> GetWeeklyAvailability(string date);
+        Task<SchedulerWeekEntity> GetWeeklyAvailability(string date);
 
         Task<bool> TakeSlot(TakeSlotEntity slot);
     }

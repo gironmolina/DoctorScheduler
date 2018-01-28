@@ -11,6 +11,7 @@ namespace DoctorScheduler.API
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<SchedulerEntity, SchedulerDto>();
                 cfg.CreateMap<TakeSlotEntity, TakeSlotDto>();
+                cfg.CreateMap<SchedulerWeekEntity, SchedulerWeekDto>();
             });
         }
     }

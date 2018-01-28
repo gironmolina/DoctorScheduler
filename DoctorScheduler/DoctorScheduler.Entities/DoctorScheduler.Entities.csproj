@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SchedulerWeekEntity.cs" />
     <Compile Include="BusySlotEntity.cs" />
+    <Compile Include="WeekHoursEntity.cs" />
     <Compile Include="FacilityEntity.cs" />
     <Compile Include="PatientEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
