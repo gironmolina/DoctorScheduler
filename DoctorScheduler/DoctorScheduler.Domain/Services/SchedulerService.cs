@@ -24,25 +24,29 @@ namespace DoctorScheduler.Domain.Services
 
         private SchedulerWeekEntity GetSchedulerWeek(SchedulerEntity schedulerEntity)
         {
-            var weekDictionary = GetWeekDictionary(schedulerEntity);
-            var min = weekDictionary.Min(i => i.Value?.WorkPeriod?.StartHour) ?? 0;
-            var max = weekDictionary.Max(i => i.Value?.WorkPeriod?.EndHour) ?? 24;
-
+            var schedulerDictionary = GetWeekDictionary(schedulerEntity);
+            var minStartHour = schedulerDictionary.Min(i => i.Value?.WorkPeriod?.StartHour) ?? 0;
+            var maxEndHour = schedulerDictionary.Max(i => i.Value?.WorkPeriod?.EndHour) ?? 24;
             var dayHours = new List<WeekHoursEntity>();
-            for (var i = min; i <= max; i++)
+
+            // Loop day hours
+            for (var i = minStartHour; i <= maxEndHour; i++)
             {
                 var hour = new List<int?>();
-                for (var j = 0; j <= 6; j++)
+
+                // Loop day indexes
+                for (var dayIndex = 0; dayIndex <= 6; dayIndex++)
                 {
-                    var day = weekDictionary.FirstOrDefault(t => t.Key == j).Value;
+                    var day = schedulerDictionary.FirstOrDefault(d => d.Key == dayIndex).Value;
                     if (day != null)
                     {
-                        var isBetweenRange1 = this.Between(i, day.WorkPeriod.StartHour, day.WorkPeriod.LunchStartHour - 1);
-                        var isBetweenRange2 = this.Between(i, day.WorkPeriod.LunchEndHour, day.WorkPeriod.EndHour);
+                        var isBetweenRange1 = this.IsBetween(i, day.WorkPeriod.StartHour, day.WorkPeriod.LunchStartHour - 1);
+                        var isBetweenRange2 = this.IsBetween(i, day.WorkPeriod.LunchEndHour, day.WorkPeriod.EndHour);
                         
+                        // Validate if it's a busy slot
                         if (day.BusySlots != null)
                         {
-                            var isBusy = day.BusySlots.Any(e => this.Between(i, e.Start.Hour, e.End.Hour));
+                            var isBusy = day.BusySlots.Any(e => this.IsBetween(i, e.Start.Hour, e.End.Hour));
                             if (isBusy)
                             {
                                 hour.Add(null);
@@ -50,6 +54,7 @@ namespace DoctorScheduler.Domain.Services
                             }
                         }
 
+                        // If it's an available slot add hour, else add null.
                         if (isBetweenRange1 || isBetweenRange2)
                         {
                             hour.Add(i);
@@ -106,7 +111,7 @@ namespace DoctorScheduler.Domain.Services
             return await HttpClientHelpers.PostAsync(url, slot).ConfigureAwait(false);
         }
 
-        private bool Between(int? x, int? min, int? max)
+        private bool IsBetween(int? x, int? min, int? max)
         {
             return x >= min &&  x <= max;
         }
