@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SchedulerService } from '../scheduler/scheduler.service';
+import { Slot, Patient } from '../scheduler/scheduler';
 
 @Component({
   selector: 'app-form',
@@ -9,10 +11,43 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
   public pageTitle: string = 'Form';
+  name: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  comments: string;
   
-  constructor(private _router: Router) { }
+  constructor(private _route: ActivatedRoute,
+              private _router: Router,
+              private _schedulerService: SchedulerService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+  }
+
+  addSlot() {   
+    var id = this._route.snapshot.paramMap.get('id');
+    var year = +this._route.snapshot.paramMap.get('year');
+    var month = +this._route.snapshot.paramMap.get('month');
+    var day = +this._route.snapshot.paramMap.get('day');
+    var time = +this._route.snapshot.paramMap.get('time');
+
+    var startDate = `${year}-${month + 1}-${day} ${time}:00:00`;
+    var endDate = `${year}-${month + 1}-${day} ${time + 1}:00:00`;
+    
+    var patient = new Patient();
+    patient.Name = this.name;
+    patient.SecondName = this.lastName;
+    patient.Email = this.email;
+    patient.Phone = this.phone;
+
+    var slot = new Slot();
+    slot.FacilityId = id;
+    slot.Start = new Date(startDate);
+    slot.End = new Date(endDate);
+    slot.Patient = patient;
+    slot.Comments = this.comments;
+
+    this._schedulerService.postSlot(slot);    
   }
 
   onBack(): void{

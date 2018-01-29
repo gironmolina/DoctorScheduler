@@ -19,3 +19,18 @@ export interface IWeekHours {
     Saturday: number;
     Sunday: number;
 }
+
+export class Slot {
+    FacilityId: string;
+    Start: Date;
+    End: Date;
+    Patient: Patient;
+    Comments: string;
+}
+
+export class Patient {
+    Name: string;
+    SecondName: string;
+    Email: string;
+    Phone: string;
+}

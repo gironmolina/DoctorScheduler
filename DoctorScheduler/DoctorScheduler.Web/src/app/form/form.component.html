@@ -6,26 +6,26 @@
         <form>
             <div class="form-group">
                 <label for="firstNameInput">First Name:</label>
-                <input type="firstName" class="form-control" id="firstNameInput">
+                <input [(ngModel)]="name" name="name" type="firstName" class="form-control" id="firstNameInput">
             </div>
             <div class="form-group">
                 <label for="lastNameInput">Last Name:</label>
-                <input type="lastName" class="form-control" id="lastNameInput">
+                <input [(ngModel)]="lastName" name="lastName" type="lastName" class="form-control" id="lastNameInput">
             </div>
             <div class="form-group">
                 <label for="emailInput">Email:</label>
-                <input type="email" class="form-control" id="emailInput">
+                <input [(ngModel)]="email" name="email" type="email" class="form-control" id="emailInput">
             </div>
             <div class="form-group">
                 <label for="phoneInput">Phone:</label>
-                <input type="phone" class="form-control" id="phoneInput">
+                <input [(ngModel)]="phone" name="phone" type="phone" class="form-control" id="phoneInput">
             </div>   
             <div class="form-group">
                 <label for="commentInput">Comments:</label>
-                <textarea type="comment" class="form-control" rows="3" id="commentInput"></textarea>
+                <textarea [(ngModel)]="comments" name="comments" type="comment" class="form-control" rows="3" id="commentInput"></textarea>
             </div>   
             <div class="text-center">
-                <button class="btn bg-success text-white" type="submit">Submit</button>
+                <button (click)="addSlot()" class="btn bg-success text-white" type="submit">Submit</button>
             </div>
         </form>
     </div>

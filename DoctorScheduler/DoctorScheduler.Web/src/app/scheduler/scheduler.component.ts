@@ -2,6 +2,7 @@ import { IScheduler, IWeekHours } from './Scheduler';
 import { Component, OnInit } from '@angular/core';
 import { SchedulerService } from "./scheduler.service";
 import { forEach } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './scheduler.component.html',
@@ -15,7 +16,8 @@ export class SchedulerComponent implements OnInit {
   currentDate: Date  = new Date();
   source: IWeekHours[] = [];
 
-  constructor(private _schedulerService: SchedulerService) {
+  constructor(private _schedulerService: SchedulerService,
+              private _router: Router) {
   }
 
   ngOnInit(): void {     
@@ -76,4 +78,14 @@ export class SchedulerComponent implements OnInit {
             (day > 9 ? '' : '0') + day
            ].join('');
   };
+
+  onGoToForm(time: number){
+    this._router.navigate(["/form", 
+                            this.scheduler.Facility.FacilityId, 
+                            this.currentDate.getFullYear(),
+                            this.currentDate.getMonth(),
+                            this.currentDate.getDate(),
+                            time
+                          ]);
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { IScheduler } from "./scheduler";
-import { HttpClient } from "@angular/common/http";
+import { IScheduler, Slot } from "./scheduler";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Response } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import { HttpErrorResponse } from "@angular/common/http/src/response";
 import { AppSettings } from '../app.settings';
@@ -18,8 +19,15 @@ export class SchedulerService {
 
     getSchedulers(date: string): Observable<IScheduler> {
         return this._http.get<IScheduler>(`${SCHEDULER_ENDPOINT}availability/?date=${date}`)
-            .do(data => console.log("All: " + JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    postSlot(body: Slot): Observable<any>{
+        let json = JSON.stringify(body);   
+        var url = `${SCHEDULER_ENDPOINT}takeSlot`;     
+        let params = "json=" + json;
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+        return this._http.post(url, params);
     }
 
     private handleError(err: HttpErrorResponse) {
