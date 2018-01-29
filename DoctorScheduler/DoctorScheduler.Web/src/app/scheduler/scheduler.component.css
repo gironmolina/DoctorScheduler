@@ -1,3 +1,7 @@
 .navigation {
     cursor: pointer;
- }
+}
+
+a {
+    cursor: pointer;
+}
