@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using DoctorScheduler.Entities;
+using DoctorScheduler.Infrastucture.Extensions;
 using DoctorScheduler.Infrastucture.Helpers;
 using log4net;
 using Newtonsoft.Json;
@@ -19,66 +20,69 @@ namespace DoctorScheduler.Domain.Services
             var url = $"{SchedulerUrl}/GetWeeklyAvailability/{date}";
             Logger.DebugFormat("Getting weekly availability for: {0}", date);
             var schedulerEntity = await HttpClientHelpers.GetAsync<SchedulerEntity>(url).ConfigureAwait(false);
-            return GetSchedulerWeek(schedulerEntity);
+            return this.GetSchedulerWeek(schedulerEntity);
         }
 
         private SchedulerWeekEntity GetSchedulerWeek(SchedulerEntity schedulerEntity)
         {
-            var schedulerDictionary = GetWeekDictionary(schedulerEntity);
+            var schedulerDictionary = this.GetWeekDictionary(schedulerEntity);
             var minStartHour = schedulerDictionary.Min(i => i.Value?.WorkPeriod?.StartHour) ?? 0;
             var maxEndHour = schedulerDictionary.Max(i => i.Value?.WorkPeriod?.EndHour) ?? 24;
             var dayHours = new List<WeekHoursEntity>();
 
             // Loop day hours
-            for (var i = minStartHour; i <= maxEndHour; i++)
+            for (var hour = minStartHour; hour <= maxEndHour; hour++)
             {
-                var hour = new List<int?>();
+                var slotScheduler = new List<int?>();
 
                 // Loop day indexes
                 for (var dayIndex = 0; dayIndex <= 6; dayIndex++)
                 {
-                    var day = schedulerDictionary.FirstOrDefault(d => d.Key == dayIndex).Value;
-                    if (day != null)
+                    var currentDayInfo = schedulerDictionary.FirstOrDefault(i => i.Key == dayIndex).Value;
+                    if (currentDayInfo != null)
                     {
-                        var isBetweenRange1 = this.IsBetween(i, day.WorkPeriod.StartHour, day.WorkPeriod.LunchStartHour - 1);
-                        var isBetweenRange2 = this.IsBetween(i, day.WorkPeriod.LunchEndHour, day.WorkPeriod.EndHour);
-                        
+                        var isBetweenRange1 = hour.IsBetween(currentDayInfo.WorkPeriod.StartHour, 
+                                                             currentDayInfo.WorkPeriod.LunchStartHour - 1);
+                        var isBetweenRange2 = hour.IsBetween(currentDayInfo.WorkPeriod.LunchEndHour, 
+                                                             currentDayInfo.WorkPeriod.EndHour);
+
                         // Validate if it's a busy slot
-                        if (day.BusySlots != null)
+                        if (currentDayInfo.BusySlots != null)
                         {
-                            var isBusy = day.BusySlots.Any(e => this.IsBetween(i, e.Start.Hour, e.End.Hour));
+                            var isBusy = currentDayInfo.BusySlots.Any(busyHour => 
+                                hour.IsBetween(busyHour.Start.Hour, busyHour.End.Hour));
                             if (isBusy)
                             {
-                                hour.Add(null);
+                                slotScheduler.Add(null);
                                 continue;
                             }
                         }
 
-                        // If it's an available slot add hour, else add null.
+                        // If it's an available slot add slot, else add null.
                         if (isBetweenRange1 || isBetweenRange2)
                         {
-                            hour.Add(i);
+                            slotScheduler.Add(hour);
                         }
                         else
                         {
-                            hour.Add(null);
+                            slotScheduler.Add(null);
                         }
                     }
                     else
                     {
-                        hour.Add(null);
+                        slotScheduler.Add(null);
                     }
                 }
 
                 dayHours.Add(new WeekHoursEntity
                 {
-                    Monday = hour[0],
-                    Tuesday = hour[1],
-                    Wednesday = hour[2],
-                    Thursday = hour[3],
-                    Friday = hour[4],
-                    Saturday = hour[5],
-                    Sunday = hour[6],
+                    Monday = slotScheduler[0],
+                    Tuesday = slotScheduler[1],
+                    Wednesday = slotScheduler[2],
+                    Thursday = slotScheduler[3],
+                    Friday = slotScheduler[4],
+                    Saturday = slotScheduler[5],
+                    Sunday = slotScheduler[6],
                 });
             }
 
@@ -109,11 +113,6 @@ namespace DoctorScheduler.Domain.Services
             var url = $"{SchedulerUrl}/TakeSlot";
             Logger.DebugFormat("Taking slot: {0}", JsonConvert.SerializeObject(slot));
             return await HttpClientHelpers.PostAsync(url, slot).ConfigureAwait(false);
-        }
-
-        private bool IsBetween(int? x, int? min, int? max)
-        {
-            return x >= min &&  x <= max;
         }
     }
 }
