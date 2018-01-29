@@ -28,7 +28,7 @@ namespace DoctorScheduler.API.Controllers
         /// <response code="500">Server found an unexpected error.</response>
         [HttpGet]
         [Route("api/v1/availability")]
-        [ResponseType(typeof(SchedulerDto))]
+        [ResponseType(typeof(SchedulerWeekDto))]
         public async Task<IHttpActionResult> GetWeeklyAvailability([FromUri] string date)
         {
             try

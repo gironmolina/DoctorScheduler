@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
@@ -20,12 +19,12 @@ namespace DoctorScheduler.Tests.Services
         {
             // Arrange
             const string date = "20180101";
-            var schedulerDto = this.GetTestSchedulerDto();
+            var schedulerDto = this.GetTestSchedulerWeekDto();
             var controller = TestSetup.Container.GetController<SchedulerController>();
 
             // Act
             var response = await controller.GetWeeklyAvailability(date).ConfigureAwait(false);
-            var actualDto = (response as OkNegotiatedContentResult<SchedulerDto>)?.Content;
+            var actualDto = (response as OkNegotiatedContentResult<SchedulerWeekDto>)?.Content;
             var expectedJson = JsonConvert.SerializeObject(schedulerDto);
             var actualJson = JsonConvert.SerializeObject(actualDto);
 
@@ -78,23 +77,13 @@ namespace DoctorScheduler.Tests.Services
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
         }
 
-        private SchedulerDto GetTestSchedulerDto()
+        private SchedulerWeekDto GetTestSchedulerWeekDto()
         {
-            var builder = new SchedulerDtoBuilder()
-                .WithDefaultValues()
-                .Friday(new SlotDtoBuilder()
-                    .WithDefaultValues()
-                    .WorkPeriod(new WorkPeriodDtoBuilder()
-                        .WithDefaultValues()
-                        .StartHour(8)
-                        .EndHour(16).Build())
-                    .BusySlots(new List<BusySlotDto>
-                    {
-                        new BusySlotDtoBuilder().WithDefaultValues().Build()
-                    }).Build());
-
+            var builder = new SchedulerWeekDtoBuilder()
+                .WithDefaultValues();
             return builder.Build();
         }
+        
 
         private TakeSlotDto GetTestTakeSlotDto()
         {
