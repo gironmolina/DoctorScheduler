@@ -13,16 +13,14 @@ export class SchedulerComponent implements OnInit {
   pageTitle: string = 'Scheduler';
   scheduler: IScheduler;
   errorMessage: string;
-  currentDate: Date  = new Date();
-  source: IWeekHours[] = [];
+  currentDate: Date = new Date();
 
   constructor(private _schedulerService: SchedulerService,
               private _router: Router) {
   }
 
   ngOnInit(): void {     
-    this.getScheduler(this.currentDate);
-    this.fillScheduler();  
+    this.getScheduler(this.currentDate);    
   }  
 
   fillScheduler(): void{

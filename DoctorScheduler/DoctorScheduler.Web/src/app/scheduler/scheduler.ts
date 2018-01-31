@@ -1,7 +1,7 @@
 export interface IScheduler{
-    Facility: IFacility,
-    SlotDurationMinutes: number,
-    WeekHours: IWeekHours[]
+    Facility: IFacility;
+    SlotDurationMinutes: number;
+    WeekHours: IWeekHours[];
 }
 
 export interface IFacility {
