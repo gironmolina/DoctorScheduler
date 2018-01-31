@@ -1,4 +1,4 @@
-﻿namespace DoctorScheduler.Infrastucture.Extensions
+﻿namespace DoctorScheduler.CrossCutting.Extensions
 {
     public static class IntegerExtension
     {

@@ -162,6 +162,10 @@
       <Project>{17920450-c2c9-41fc-966b-f17d57445f07}</Project>
       <Name>DoctorScheduler.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DoctorScheduler.CrossCutting\DoctorScheduler.CrossCutting.csproj">
+      <Project>{61FAAAFD-6EE4-4AE8-91F9-21D6265AA575}</Project>
+      <Name>DoctorScheduler.CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler.Domain\DoctorScheduler.Domain.csproj">
       <Project>{a50f09d3-1265-4c95-952e-c644f32cf714}</Project>
       <Name>DoctorScheduler.Domain</Name>

@@ -1,26 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using DoctorScheduler.CrossCutting.Extensions;
+using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Entities;
-using DoctorScheduler.Infrastucture.Extensions;
-using DoctorScheduler.Infrastucture.Helpers;
+using DoctorScheduler.Infrastucture.Interfaces;
 using log4net;
-using Newtonsoft.Json;
 
 namespace DoctorScheduler.Domain.Services
 {
     public class SchedulerService : ISchedulerService
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(SchedulerService));
-        private static readonly string SchedulerUrl = ConfigurationManager.AppSettings["SchedulerAPIUrl"];
+        private readonly ISchedulerRepository schedulerRepository;
+
+        public SchedulerService(ISchedulerRepository schedulerRepository)
+        {
+            this.schedulerRepository = schedulerRepository ?? throw new ArgumentNullException(nameof(schedulerRepository));
+        }
 
         public async Task<SchedulerWeekEntity> GetWeeklyAvailability(string date)
         {
-            var url = $"{SchedulerUrl}/GetWeeklyAvailability/{date}";
-            Logger.DebugFormat("Getting weekly availability for: {0}", date);
-            var schedulerEntity = await HttpClientHelpers.GetAsync<SchedulerEntity>(url).ConfigureAwait(false);
+            var schedulerEntity = await schedulerRepository.GetScheduler(date);
             return this.GetSchedulerWeek(schedulerEntity);
+        }
+
+        public async Task<bool> TakeSlot(TakeSlotEntity slot)
+        {
+            return await schedulerRepository.PostSlot(slot);
         }
 
         private SchedulerWeekEntity GetSchedulerWeek(SchedulerEntity schedulerEntity)
@@ -106,13 +115,6 @@ namespace DoctorScheduler.Domain.Services
                 {5, schedulerEntity.Saturday},
                 {6, schedulerEntity.Sunday},
             };
-        }
-
-        public async Task<bool> TakeSlot(TakeSlotEntity slot)
-        {
-            var url = $"{SchedulerUrl}/TakeSlot";
-            Logger.DebugFormat("Taking slot: {0}", JsonConvert.SerializeObject(slot));
-            return await HttpClientHelpers.PostAsync(url, slot).ConfigureAwait(false);
         }
     }
 }

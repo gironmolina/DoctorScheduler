@@ -117,9 +117,17 @@
       <Project>{17920450-C2C9-41FC-966B-F17D57445F07}</Project>
       <Name>DoctorScheduler.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DoctorScheduler.CrossCutting\DoctorScheduler.CrossCutting.csproj">
+      <Project>{61FAAAFD-6EE4-4AE8-91F9-21D6265AA575}</Project>
+      <Name>DoctorScheduler.CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler.Domain\DoctorScheduler.Domain.csproj">
       <Project>{A50F09D3-1265-4C95-952E-C644F32CF714}</Project>
       <Name>DoctorScheduler.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastucture.csproj">
+      <Project>{552922DE-EC14-47D6-8DD2-B11C643F3B7D}</Project>
+      <Name>DoctorScheduler.Infrastucture</Name>
     </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler\DoctorScheduler.API.csproj">
       <Project>{363432A9-1EB5-4A00-9A36-24C06B30A2EC}</Project>

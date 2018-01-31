@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Interfaces;
-using DoctorScheduler.Domain.Services;
+using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Entities;
 using log4net;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoctorScheduler.Infrastucture.Exceptions
+namespace DoctorScheduler.CrossCutting.Exceptions
 {
     [Serializable]
     public class SchedulerBadRequestException : Exception

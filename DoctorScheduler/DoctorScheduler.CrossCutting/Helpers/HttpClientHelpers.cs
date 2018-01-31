@@ -1,34 +1,31 @@
 ﻿using System;
-using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using DoctorScheduler.Infrastucture.Exceptions;
+using DoctorScheduler.CrossCutting.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DoctorScheduler.Infrastucture.Helpers
+namespace DoctorScheduler.CrossCutting.Helpers
 {
     public static class HttpClientHelpers
     {
-        private static readonly string Username = ConfigurationManager.AppSettings["Username"];
-        private static readonly string Password = ConfigurationManager.AppSettings["Password"];
-
-        public static async Task<T> GetAsync<T>(string url)
+        public static async Task<T> GetAsync<T>(string url, string username, string password)
         {
             using (var client = new HttpClient())
             {
                 // Workaround to avoid SSL certificate verification
                 ServicePointManager.ServerCertificateValidationCallback +=
                     (sender, cert, chain, sslPolicyErrors) => true;
-                var byteArray = Encoding.ASCII.GetBytes($"{Username}:{Password}");
+                var byteArray = Encoding.ASCII.GetBytes($"{username}:{password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(byteArray));
 
                 using (var response = await client.GetAsync(url).ConfigureAwait(false))
                 {
+                    //response.EnsureSuccessStatusCode();
                     if (!response.IsSuccessStatusCode)
                     {
                         throw new SchedulerBadRequestException();
@@ -41,13 +38,13 @@ namespace DoctorScheduler.Infrastucture.Helpers
             }
         }
 
-        public static async Task<bool> PostAsync(string url, object content)
+        public static async Task<bool> PostAsync(string url, string username, string password, object content)
         {
             using (var client = new HttpClient())
             {
                 // Workaround to avoid SSL certificate verification
                 ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-                var byteArray = Encoding.ASCII.GetBytes($"{Username}:{Password}");
+                var byteArray = Encoding.ASCII.GetBytes($"{username}:{password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(byteArray));
 

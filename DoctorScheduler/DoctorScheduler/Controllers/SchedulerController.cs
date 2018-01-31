@@ -5,8 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.Application.Interfaces;
-using DoctorScheduler.Application.Services;
-using DoctorScheduler.Infrastucture.Exceptions;
+using DoctorScheduler.CrossCutting.Exceptions;
 using log4net;
 using Swashbuckle.Swagger.Annotations;
 

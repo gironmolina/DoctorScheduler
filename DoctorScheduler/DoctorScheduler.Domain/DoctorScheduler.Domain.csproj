@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoctorScheduler.CrossCutting\DoctorScheduler.CrossCutting.csproj">
+      <Project>{61FAAAFD-6EE4-4AE8-91F9-21D6265AA575}</Project>
+      <Name>DoctorScheduler.CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler.Entities\DoctorScheduler.Entities.csproj">
       <Project>{EA83444A-FD36-420E-9108-9627B6FCEFBD}</Project>
       <Name>DoctorScheduler.Entities</Name>

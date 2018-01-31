@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DoctorScheduler.Entities;
 
-namespace DoctorScheduler.Domain.Services
+namespace DoctorScheduler.Domain.Interfaces
 {
     public interface ISchedulerService
     {

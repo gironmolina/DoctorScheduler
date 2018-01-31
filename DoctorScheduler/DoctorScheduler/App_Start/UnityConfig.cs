@@ -1,8 +1,13 @@
 using DoctorScheduler.Application.Services;
 using DoctorScheduler.Domain.Services;
 using System;
-using DoctorScheduler.Application.Interfaces;
 using Unity;
+using DoctorScheduler.Application.Interfaces;
+using DoctorScheduler.Infrastucture.Repositories;
+using DoctorScheduler.Infrastucture.Interfaces;
+using DoctorScheduler.CrossCutting.Interfaces;
+using DoctorScheduler.CrossCutting.Helpers;
+using DoctorScheduler.Domain.Interfaces;
 
 namespace DoctorScheduler.API
 {
@@ -30,6 +35,12 @@ namespace DoctorScheduler.API
 
             // Domain Services
             container.RegisterType<ISchedulerService, SchedulerService>();
+
+            // Repositories
+            container.RegisterType<ISchedulerRepository, SchedulerRepository>();
+
+            // Cross-cutting
+            container.RegisterType<IAppConfigSettings, AppConfigSettings>();
         }
     }
 }
