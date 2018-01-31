@@ -25,12 +25,7 @@ namespace DoctorScheduler.CrossCutting.Helpers
 
                 using (var response = await client.GetAsync(url).ConfigureAwait(false))
                 {
-                    //response.EnsureSuccessStatusCode();
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        throw new SchedulerBadRequestException();
-                    }
-
+                    response.EnsureSuccessStatusCode();
                     var json = JObject.Parse(await response.Content.ReadAsStringAsync()
                         .ConfigureAwait(false));
                     return json.ToObject<T>();

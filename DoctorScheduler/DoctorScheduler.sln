@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Entities", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Domain", "DoctorScheduler.Domain\DoctorScheduler.Domain.csproj", "{A50F09D3-1265-4C95-952E-C644F32CF714}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Infrastucture", "DoctorScheduler.Infrastucture\DoctorScheduler.Infrastucture.csproj", "{552922DE-EC14-47D6-8DD2-B11C643F3B7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.Infrastructure", "DoctorScheduler.Infrastucture\DoctorScheduler.Infrastructure.csproj", "{552922DE-EC14-47D6-8DD2-B11C643F3B7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorScheduler.CrossCutting", "DoctorScheduler.CrossCutting\DoctorScheduler.CrossCutting.csproj", "{61FAAAFD-6EE4-4AE8-91F9-21D6265AA575}"
 EndProject

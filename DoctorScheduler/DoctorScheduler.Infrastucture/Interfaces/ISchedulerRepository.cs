@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DoctorScheduler.Entities;
 
-namespace DoctorScheduler.Infrastucture.Interfaces
+namespace DoctorScheduler.Infrastructure.Interfaces
 {
     public interface ISchedulerRepository
     {

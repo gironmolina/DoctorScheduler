@@ -125,9 +125,9 @@
       <Project>{A50F09D3-1265-4C95-952E-C644F32CF714}</Project>
       <Name>DoctorScheduler.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastucture.csproj">
+    <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastructure.csproj">
       <Project>{552922DE-EC14-47D6-8DD2-B11C643F3B7D}</Project>
-      <Name>DoctorScheduler.Infrastucture</Name>
+      <Name>DoctorScheduler.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler\DoctorScheduler.API.csproj">
       <Project>{363432A9-1EB5-4A00-9A36-24C06B30A2EC}</Project>

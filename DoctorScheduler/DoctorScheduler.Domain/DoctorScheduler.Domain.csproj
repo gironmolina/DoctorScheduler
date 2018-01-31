@@ -64,9 +64,9 @@
       <Project>{EA83444A-FD36-420E-9108-9627B6FCEFBD}</Project>
       <Name>DoctorScheduler.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastucture.csproj">
+    <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastructure.csproj">
       <Project>{552922DE-EC14-47D6-8DD2-B11C643F3B7D}</Project>
-      <Name>DoctorScheduler.Infrastucture</Name>
+      <Name>DoctorScheduler.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

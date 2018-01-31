@@ -3,11 +3,11 @@ using DoctorScheduler.Domain.Services;
 using System;
 using Unity;
 using DoctorScheduler.Application.Interfaces;
-using DoctorScheduler.Infrastucture.Repositories;
-using DoctorScheduler.Infrastucture.Interfaces;
 using DoctorScheduler.CrossCutting.Interfaces;
 using DoctorScheduler.CrossCutting.Helpers;
 using DoctorScheduler.Domain.Interfaces;
+using DoctorScheduler.Infrastructure.Interfaces;
+using DoctorScheduler.Infrastructure.Repositories;
 
 namespace DoctorScheduler.API
 {

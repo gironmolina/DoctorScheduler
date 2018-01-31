@@ -5,10 +5,10 @@ using DoctorScheduler.CrossCutting.Helpers;
 using DoctorScheduler.CrossCutting.Interfaces;
 using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Domain.Services;
+using DoctorScheduler.Infrastructure.Interfaces;
+using DoctorScheduler.Infrastructure.Repositories;
 using NUnit.Framework;
 using Unity;
-using DoctorScheduler.Infrastucture.Interfaces;
-using DoctorScheduler.Infrastucture.Repositories;
 
 namespace DoctorScheduler.Tests
 {

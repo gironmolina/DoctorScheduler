@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DoctorScheduler.CrossCutting.Extensions;
 using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Entities;
-using DoctorScheduler.Infrastucture.Interfaces;
+using DoctorScheduler.Infrastructure.Interfaces;
 using log4net;
 
 namespace DoctorScheduler.Domain.Services

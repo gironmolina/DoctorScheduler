@@ -7,8 +7,8 @@
     <ProjectGuid>{552922DE-EC14-47D6-8DD2-B11C643F3B7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DoctorScheduler.Infrastucture</RootNamespace>
-    <AssemblyName>DoctorScheduler.Infrastucture</AssemblyName>
+    <RootNamespace>DoctorScheduler.Infrastructure</RootNamespace>
+    <AssemblyName>DoctorScheduler.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DoctorScheduler.CrossCutting.Exceptions;
 using DoctorScheduler.CrossCutting.Helpers;
 using DoctorScheduler.CrossCutting.Interfaces;
 using DoctorScheduler.Entities;
-using DoctorScheduler.Infrastucture.Interfaces;
+using DoctorScheduler.Infrastructure.Interfaces;
 
-namespace DoctorScheduler.Infrastucture.Repositories
+namespace DoctorScheduler.Infrastructure.Repositories
 {
     public class SchedulerRepository : ISchedulerRepository
     {
@@ -19,10 +20,18 @@ namespace DoctorScheduler.Infrastucture.Repositories
         public async Task<SchedulerEntity> GetScheduler(string date)
         {
             var url = $"{appConfigSettings.SchedulerApiUrl}/GetWeeklyAvailability/{date}";
-            //Logger.DebugFormat("Getting weekly availability for: {0}", date);
-            return await HttpClientHelpers.GetAsync<SchedulerEntity>(url, 
-                appConfigSettings.Username, 
-                appConfigSettings.Password).ConfigureAwait(false);
+            try
+            {
+                return await HttpClientHelpers.GetAsync<SchedulerEntity>(
+                    url,
+                    appConfigSettings.Username,
+                    appConfigSettings.Password).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                throw new SchedulerBadRequestException(e.Message, e);
+            }
+            
         }
 
         public async Task<bool> PostSlot(TakeSlotEntity slot)
