@@ -9,7 +9,7 @@ import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/do";
 import 'rxjs/add/operator/map';
-
+import 'rxjs/add/operator/share';
 const SCHEDULER_ENDPOINT = `${AppSettings.API_ENDPOINT}`;
 
 @Injectable()
@@ -22,12 +22,10 @@ export class SchedulerService {
             .catch(this.handleError);
     }
 
-    postSlot(body: Slot): Observable<any>{
-        let json = JSON.stringify(body);   
-        var url = `${SCHEDULER_ENDPOINT}takeSlot`;     
-        let params = "json=" + json;
-        let headers = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(url, params);
+    postSlot(body: Slot): void{
+        let url = `${SCHEDULER_ENDPOINT}takeSlot`;
+        this._http.post(url, body)
+        .subscribe();
     }
 
     private handleError(err: HttpErrorResponse) {

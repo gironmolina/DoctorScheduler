@@ -62,7 +62,7 @@
     <Compile Include="Dtos\TakeSlotDto.cs" />
     <Compile Include="Dtos\WorkPeriodDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ISchedulerAppService.cs" />
+    <Compile Include="Interfaces\ISchedulerAppService.cs" />
     <Compile Include="Services\SchedulerAppService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using DoctorScheduler.Application.Services;
+﻿using DoctorScheduler.Application.Interfaces;
+using DoctorScheduler.Application.Services;
 using DoctorScheduler.API;
 using DoctorScheduler.Domain.Services;
 using NUnit.Framework;

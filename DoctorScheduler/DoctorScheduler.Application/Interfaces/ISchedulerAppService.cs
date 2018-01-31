@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DoctorScheduler.Application.Dtos;
 
-namespace DoctorScheduler.Application.Services
+namespace DoctorScheduler.Application.Interfaces
 {
     public interface ISchedulerAppService
     {

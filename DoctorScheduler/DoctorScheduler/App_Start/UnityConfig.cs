@@ -1,6 +1,7 @@
 using DoctorScheduler.Application.Services;
 using DoctorScheduler.Domain.Services;
 using System;
+using DoctorScheduler.Application.Interfaces;
 using Unity;
 
 namespace DoctorScheduler.API

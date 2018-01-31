@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DoctorScheduler.Application.Dtos;
+using DoctorScheduler.Application.Interfaces;
 using DoctorScheduler.Application.Services;
 using DoctorScheduler.Infrastucture.Exceptions;
 using log4net;
