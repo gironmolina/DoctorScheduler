@@ -10,7 +10,6 @@ namespace DoctorScheduler.API.Filter
     [AttributeUsage(AttributeTargets.Method)]
     public class CheckModelForNullAttribute : ActionFilterAttribute
     {
-        //this
         private readonly Func<Dictionary<string, object>, bool> validate;
 
         public CheckModelForNullAttribute() : this(arguments =>
