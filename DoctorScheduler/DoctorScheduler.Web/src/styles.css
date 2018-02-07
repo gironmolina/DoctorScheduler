@@ -6,4 +6,8 @@
 
 div.card-header {
     font-size: x-large;
- }
+}
+
+div.footer {
+    margin-top: 20px;
+}

@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 
 export class SchedulerComponent implements OnInit {
+  isLoading: boolean = true;
   pageTitle: string = 'Scheduler';
   scheduler: IScheduler;
   WeekHours: IWeekHours[];  
+  name: string;  
+  address: string; 
   errorMessage: string;
   currentDate: Date = new Date();
 
@@ -25,6 +28,7 @@ export class SchedulerComponent implements OnInit {
   }  
 
   onNextDate(isNext : boolean): void {
+    this.isLoading = true;
     var date = new Date(this.currentDate);
     if (isNext) {
       date.setDate(date.getDate() + (7 - date.getDay()) % 7 + 1);
@@ -43,6 +47,9 @@ export class SchedulerComponent implements OnInit {
             .subscribe(scheduler => {
               this.scheduler = scheduler;
               this.WeekHours = this.scheduler.WeekHours;
+              this.name = this.scheduler.Facility.Name;
+              this.address = this.scheduler.Facility.Address;
+              this.isLoading = false;              
             },
             error => this.errorMessage = <any>error);    
   }

@@ -2,10 +2,18 @@
     <div class="card-header text-white bg-primary">
         {{pageTitle}}
     </div>
-    <div class="card-body text-center">
-        <p class="card-text">Please choose an available date:</p>
-        <p class="card-text text-right">{{currentDate}}</p>
-        <div class="table-responsive">
+    <div class="card-body text-left">
+        <div class="container">
+            <div class="row">
+                <div class="col"><b>Name</b>: {{name}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><b>Address</b>: {{address}}</div>
+            </div>
+        </div>
+        <p class="card-text text-right"><i>{{currentDate | date: 'mediumDate'}}</i></p>
+
+        <div class="table-responsive">            
             <table class="table">
                 <thead>
                     <tr class="bg-success text-white">
@@ -23,8 +31,8 @@
                             <a><span octicon="chevron-right" fill="white" width="10" height="20"></span></a>
                         </th>
                     </tr>
-                </thead>
-                <tbody>
+                </thead>        
+                <tbody *ngIf="!isLoading">
                     <tr *ngFor="let item of WeekHours">
                         <td></td>
                         <td><a (click)="onGoToForm(item.Monday)">{{item.Monday | convertToTimeFormat}}</a></td>
