@@ -1,19 +1,21 @@
-﻿namespace DoctorScheduler.Application.Dtos
+﻿using System;
+
+namespace DoctorScheduler.Application.Dtos
 {
     public class WeekHoursDto
     {
-        public int? Monday { get; set; }
+        public TimeSpan? Monday { get; set; }
 
-        public int? Tuesday { get; set; }
+        public TimeSpan? Tuesday { get; set; }
 
-        public int? Wednesday { get; set; }
+        public TimeSpan? Wednesday { get; set; }
 
-        public int? Thursday { get; set; }
+        public TimeSpan? Thursday { get; set; }
 
-        public int? Friday { get; set; }
+        public TimeSpan? Friday { get; set; }
 
-        public int? Saturday { get; set; }
+        public TimeSpan? Saturday { get; set; }
 
-        public int? Sunday { get; set; }
+        public TimeSpan? Sunday { get; set; }
     }
 }

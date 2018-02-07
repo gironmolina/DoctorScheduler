@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using DoctorScheduler.CrossCutting.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,13 +22,25 @@ namespace DoctorScheduler.CrossCutting.Helpers
                 var byteArray = Encoding.ASCII.GetBytes($"{username}:{password}");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(byteArray));
-
+                
                 using (var response = await client.GetAsync(url).ConfigureAwait(false))
                 {
-                    response.EnsureSuccessStatusCode();
-                    var json = JObject.Parse(await response.Content.ReadAsStringAsync()
-                        .ConfigureAwait(false));
-                    return json.ToObject<T>();
+                    try
+                    {
+                        response.EnsureSuccessStatusCode();
+                        var json = JObject.Parse(await response.Content.ReadAsStringAsync()
+                            .ConfigureAwait(false));
+                        return json.ToObject<T>();
+                    }
+                    catch (HttpRequestException e)
+                    {
+                        if (response.StatusCode == HttpStatusCode.BadRequest)
+                        {
+                            throw new SchedulerBadRequestException(e.Message, e);
+                        }
+
+                        throw;
+                    }
                 }
             }
         }
