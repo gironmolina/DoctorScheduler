@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class SchedulerComponent implements OnInit {
   pageTitle: string = 'Scheduler';
   scheduler: IScheduler;
+  WeekHours: IWeekHours[];  
   errorMessage: string;
   currentDate: Date = new Date();
 
@@ -23,22 +24,7 @@ export class SchedulerComponent implements OnInit {
     this.getScheduler(this.currentDate);    
   }  
 
-  fillScheduler(): void{
-  for (var i = this.scheduler.WeekHours.length - 1; i >= 0; i--) {
-    if (this.scheduler.WeekHours[i].Monday === null &&
-        this.scheduler.WeekHours[i].Tuesday === null &&
-        this.scheduler.WeekHours[i].Wednesday === null &&
-        this.scheduler.WeekHours[i].Thursday === null &&
-        this.scheduler.WeekHours[i].Friday === null &&
-        this.scheduler.WeekHours[i].Saturday === null &&
-        this.scheduler.WeekHours[i].Sunday === null)
-      {
-          this.scheduler.WeekHours.splice(i, 1);
-      }
-    }
-  }
-
-  getDate(isNext : boolean): void {
+  onNextDate(isNext : boolean): void {
     var date = new Date(this.currentDate);
     if (isNext) {
       date.setDate(date.getDate() + (7 - date.getDay()) % 7 + 1);
@@ -56,7 +42,7 @@ export class SchedulerComponent implements OnInit {
     this._schedulerService.getSchedulers(dateFormat)
             .subscribe(scheduler => {
               this.scheduler = scheduler;
-              this.fillScheduler();
+              this.WeekHours = this.scheduler.WeekHours;
             },
             error => this.errorMessage = <any>error);    
   }

@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 
 export class ConvertToTimeFormatPipe implements PipeTransform {
-    transform(value: number): string {
+    transform(value: string): string {
         if (value != null){
-            return (value > 9 ? '' : '0') + value + (':00');            
+            return value.substr(0, value.length - 3);            
         }
     }    
 }
