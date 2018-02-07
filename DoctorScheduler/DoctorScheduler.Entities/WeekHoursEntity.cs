@@ -1,19 +1,21 @@
-﻿namespace DoctorScheduler.Entities
+﻿using System;
+
+namespace DoctorScheduler.Entities
 {
     public class WeekHoursEntity
     {
-        public int? Monday { get; set; }
+        public DateTime? Monday { get; set; }
 
-        public int? Tuesday { get; set; }
+        public DateTime? Tuesday { get; set; }
 
-        public int? Wednesday { get; set; }
+        public DateTime? Wednesday { get; set; }
 
-        public int? Thursday { get; set; }
+        public DateTime? Thursday { get; set; }
 
-        public int? Friday { get; set; }
+        public DateTime? Friday { get; set; }
 
-        public int? Saturday { get; set; }
+        public DateTime? Saturday { get; set; }
 
-        public int? Sunday { get; set; }
+        public DateTime? Sunday { get; set; }
     }
 }
