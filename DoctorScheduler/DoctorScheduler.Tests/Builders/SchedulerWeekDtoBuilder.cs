@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DoctorScheduler.Application.Dtos;
 
 namespace DoctorScheduler.Tests.Builders
@@ -15,15 +16,15 @@ namespace DoctorScheduler.Tests.Builders
                 .WeekHours(new List<WeekHoursDto>
                 {
                     new WeekHoursDtoBuilder().WithDefaultValues().Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(9).Wednesday(9).Friday(9).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(10).Wednesday(10).Friday(10).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(11).Wednesday(11).Friday(11).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(12).Wednesday(12).Friday(12).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(9, 0, 0)).Wednesday(new TimeSpan(9, 0, 0)).Friday(new TimeSpan(9, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(10, 0, 0)).Wednesday(new TimeSpan(10, 0, 0)).Friday(new TimeSpan(10, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(11, 0, 0)).Wednesday(new TimeSpan(11, 0, 0)).Friday(new TimeSpan(11, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(12, 0, 0)).Wednesday(new TimeSpan(12, 0, 0)).Friday(new TimeSpan(12, 0, 0)).Build(),
                     new WeekHoursDtoBuilder().WithDefaultValues().Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(14).Wednesday(14).Friday(14).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(15).Wednesday(15).Friday(15).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(16).Wednesday(16).Friday(16).Build(),
-                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(17).Wednesday(17).Friday(null).Build()
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(14, 0, 0)).Wednesday(new TimeSpan(14, 0, 0)).Friday(new TimeSpan(14, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(15, 0, 0)).Wednesday(new TimeSpan(15, 0, 0)).Friday(new TimeSpan(15, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(16, 0, 0)).Wednesday(new TimeSpan(16, 0, 0)).Friday(new TimeSpan(16, 0, 0)).Build(),
+                    new WeekHoursDtoBuilder().WithDefaultValues().Monday(new TimeSpan(17, 0, 0)).Wednesday(new TimeSpan(17, 0, 0)).Friday(null).Build()
                 });
         }
 

@@ -1,4 +1,5 @@
-﻿using DoctorScheduler.Application.Dtos;
+﻿using System;
+using DoctorScheduler.Application.Dtos;
 
 namespace DoctorScheduler.Tests.Builders
 {
@@ -18,43 +19,43 @@ namespace DoctorScheduler.Tests.Builders
                 .Sunday(null);
         }
 
-        public WeekHoursDtoBuilder Monday(int? monday)
+        public WeekHoursDtoBuilder Monday(TimeSpan? monday)
         {
             this.innerObject.Monday = monday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Tuesday(int? tuesday)
+        public WeekHoursDtoBuilder Tuesday(TimeSpan? tuesday)
         {
             this.innerObject.Tuesday = tuesday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Wednesday(int? wednesday)
+        public WeekHoursDtoBuilder Wednesday(TimeSpan? wednesday)
         {
             this.innerObject.Wednesday = wednesday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Thursday(int? thursday)
+        public WeekHoursDtoBuilder Thursday(TimeSpan? thursday)
         {
             this.innerObject.Thursday = thursday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Friday(int? friday)
+        public WeekHoursDtoBuilder Friday(TimeSpan? friday)
         {
             this.innerObject.Friday = friday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Saturday(int? saturday)
+        public WeekHoursDtoBuilder Saturday(TimeSpan? saturday)
         {
             this.innerObject.Saturday = saturday;
             return this;
         }
 
-        public WeekHoursDtoBuilder Sunday(int? sunday)
+        public WeekHoursDtoBuilder Sunday(TimeSpan? sunday)
         {
             this.innerObject.Sunday = sunday;
             return this;

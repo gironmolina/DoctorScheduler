@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DoctorScheduler.CrossCutting.Enums;
 using DoctorScheduler.CrossCutting.Extensions;
 using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Entities;
@@ -47,18 +48,6 @@ namespace DoctorScheduler.Domain.Services
             return await this.schedulerRepository.PostSlot(slot);
         }
 
-
-        enum Days
-        {
-            Monday,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday,
-            Saturday,
-            Sunday
-        }
-
         private SchedulerWeekEntity GetSchedulerWeek(SchedulerEntity schedulerEntity)
         {
             var schedulerDictionary = this.GetWeekDictionary(schedulerEntity);
@@ -68,7 +57,6 @@ namespace DoctorScheduler.Domain.Services
             var initialHour = new TimeSpan(minHour, 0, 0);
             var finalHour = new TimeSpan(maxHour, 0, 0);
             var slotDuration = schedulerEntity.SlotDurationMinutes;
-            //var slotDuration = 60;
 
             var hourRows = new List<WeekHoursEntity>();
             for (var hour = initialHour; hour <= finalHour; hour = hour.Add(new TimeSpan(0, slotDuration, 0)))
@@ -87,13 +75,13 @@ namespace DoctorScheduler.Domain.Services
 
             foreach (var hourRow in hourRows)
             {
-                this.ValidateSlot(Days.Monday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Tuesday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Wednesday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Thursday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Friday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Saturday, hourRow, schedulerDictionary);
-                this.ValidateSlot(Days.Sunday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Monday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Tuesday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Wednesday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Thursday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Friday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Saturday, hourRow, schedulerDictionary);
+                this.ValidateSlot(DaysEnum.Sunday, hourRow, schedulerDictionary);
             }
 
             return new SchedulerWeekEntity
@@ -104,7 +92,7 @@ namespace DoctorScheduler.Domain.Services
             };
         }
 
-        private void ValidateSlot(Days day, WeekHoursEntity hourRow, Dictionary<int, SlotEntity> schedulerDictionary)
+        private void ValidateSlot(DaysEnum day, WeekHoursEntity hourRow, Dictionary<int, SlotEntity> schedulerDictionary)
         {
             var dayProperty = hourRow.GetType().GetProperty(day.ToString());
             var hour = (TimeSpan?)dayProperty?.GetValue(hourRow);

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DaysEnum.cs" />
     <Compile Include="Exceptions\SchedulerBadRequestException.cs" />
     <Compile Include="Extensions\IntegerExtension.cs" />
     <Compile Include="Helpers\AppConfigSettings.cs" />
