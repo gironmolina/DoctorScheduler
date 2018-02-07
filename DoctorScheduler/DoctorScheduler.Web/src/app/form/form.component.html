@@ -1,5 +1,5 @@
 <div class="card ">
-    <div class="card-header text-white bg-primary">
+    <div class="card-header text-white bg-success">
         {{pageTitle}}
     </div>
     <div class="card-body">
@@ -25,12 +25,12 @@
                 <textarea [(ngModel)]="comments" name="comments" type="comment" class="form-control" rows="3" id="commentInput"></textarea>
             </div>   
             <div class="text-center">
-                <button (click)="addSlot()" class="btn bg-success text-white" type="submit">Submit</button>
+                <button (click)="addSlot()" class="btn bg-danger text-white" type="submit">Submit</button>
             </div>
         </form>
     </div>
     <div class="card-footer bg-light">
-        <button type="button" class="btn btn-primary" (click)="onBack()" type="submit">
+        <button type="button" class="btn btn-success" (click)="onBack()" type="submit">
             <span octicon="chevron-left" fill="white" width="10" height="20"></span> Back
         </button>
     </div>
