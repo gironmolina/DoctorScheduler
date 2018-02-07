@@ -29,10 +29,13 @@ export class FormComponent implements OnInit {
     var year = +this._route.snapshot.paramMap.get('year');
     var month = +this._route.snapshot.paramMap.get('month');
     var day = +this._route.snapshot.paramMap.get('day');
-    var time = +this._route.snapshot.paramMap.get('time');
+    var time = this._route.snapshot.paramMap.get('time');
+    var duration = +this._route.snapshot.paramMap.get('duration');
 
-    var startDate = `${year}-${month + 1}-${day} ${time}:00:00`;
-    var endDate = `${year}-${month + 1}-${day} ${time + 1}:00:00`;
+    var mapDate = `${year}-${month + 1}-${day} ${time}`;
+    var startDate = new Date(mapDate);    
+    var endDate = new Date(startDate);
+    endDate.setMinutes (startDate.getMinutes() + duration);
     
     var patient = new Patient();
     patient.Name = this.name;
@@ -42,8 +45,8 @@ export class FormComponent implements OnInit {
 
     var slot = new Slot();
     slot.FacilityId = id;
-    slot.Start = new Date(startDate);
-    slot.End = new Date(endDate);
+    slot.Start = startDate;
+    slot.End = endDate;
     slot.Patient = patient;
     slot.Comments = this.comments;
 

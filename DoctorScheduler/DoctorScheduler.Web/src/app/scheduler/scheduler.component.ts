@@ -70,13 +70,14 @@ export class SchedulerComponent implements OnInit {
            ].join('');
   };
 
-  onGoToForm(time: number){
+  onGoToForm(time: string){
     this._router.navigate(["/form", 
                             this.scheduler.Facility.FacilityId, 
                             this.currentDate.getFullYear(),
                             this.currentDate.getMonth(),
                             this.currentDate.getDate(),
-                            time
+                            time,
+                            this.scheduler.SlotDurationMinutes
                           ]);
   }
 }
