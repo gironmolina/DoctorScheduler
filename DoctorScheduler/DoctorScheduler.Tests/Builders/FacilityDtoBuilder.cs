@@ -1,6 +1,6 @@
 ﻿using DoctorScheduler.Application.Dtos;
 
-namespace DoctorScheduler.Tests.Builders
+namespace DoctorScheduler.IntegrationTests.Builders
 {
     public class FacilityDtoBuilder
     {

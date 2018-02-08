@@ -4,12 +4,11 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.API.Controllers;
+using DoctorScheduler.IntegrationTests.Extensions;
 using DoctorScheduler.Tests.Builders;
-using DoctorScheduler.Tests.Extensions;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace DoctorScheduler.Tests.Services
+namespace DoctorScheduler.IntegrationTests.Services
 {
     [TestFixture]
     public class SchedulerServiceTests
@@ -19,17 +18,16 @@ namespace DoctorScheduler.Tests.Services
         {
             // Arrange
             const string date = "20180101";
-            var schedulerDto = this.GetTestSchedulerWeekDto();
             var controller = TestSetup.Container.GetController<SchedulerController>();
 
             // Act
             var response = await controller.GetWeeklyAvailability(date).ConfigureAwait(false);
             var actualDto = (response as OkNegotiatedContentResult<SchedulerWeekDto>)?.Content;
-            var expectedJson = JsonConvert.SerializeObject(schedulerDto);
-            var actualJson = JsonConvert.SerializeObject(actualDto);
+            var isSuccessStatusCode = response.ExecuteAsync(new CancellationToken()).Result.IsSuccessStatusCode;
 
             // Assert
-            Assert.AreEqual(expectedJson, actualJson);
+            Assert.IsTrue(isSuccessStatusCode);
+            Assert.IsInstanceOf(typeof(SchedulerWeekDto), actualDto);
         }
 
         [Test]
@@ -76,14 +74,6 @@ namespace DoctorScheduler.Tests.Services
             Assert.IsFalse(response.IsSuccessStatusCode);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
         }
-
-        private SchedulerWeekDto GetTestSchedulerWeekDto()
-        {
-            var builder = new SchedulerWeekDtoBuilder()
-                .WithDefaultValues();
-            return builder.Build();
-        }
-        
 
         private TakeSlotDto GetTestTakeSlotDto()
         {

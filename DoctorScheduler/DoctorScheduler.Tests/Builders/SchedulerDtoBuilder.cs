@@ -1,6 +1,7 @@
 ﻿using DoctorScheduler.Application.Dtos;
+using DoctorScheduler.Tests.Builders;
 
-namespace DoctorScheduler.Tests.Builders
+namespace DoctorScheduler.IntegrationTests.Builders
 {
     public class SchedulerDtoBuilder
     {

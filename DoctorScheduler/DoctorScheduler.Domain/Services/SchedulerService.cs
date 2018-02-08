@@ -57,6 +57,10 @@ namespace DoctorScheduler.Domain.Services
             var initialHour = new TimeSpan(minHour, 0, 0);
             var finalHour = new TimeSpan(maxHour, 0, 0);
             var slotDuration = schedulerEntity.SlotDurationMinutes;
+            if (slotDuration <= 0)
+            {
+                return null;
+            }
 
             var hourRows = new List<WeekHoursEntity>();
             for (var hour = initialHour; hour <= finalHour; hour = hour.Add(new TimeSpan(0, slotDuration, 0)))

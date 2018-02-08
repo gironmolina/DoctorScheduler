@@ -1,5 +1,6 @@
 ﻿using System;
 using DoctorScheduler.Application.Dtos;
+using DoctorScheduler.IntegrationTests.Builders;
 
 namespace DoctorScheduler.Tests.Builders
 {

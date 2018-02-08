@@ -3,7 +3,7 @@ using System.Web.Http;
 using System.Web.Http.Hosting;
 using Unity;
 
-namespace DoctorScheduler.Tests.Extensions
+namespace DoctorScheduler.IntegrationTests.Extensions
 {
     public static class UnityContainerExtensions
     {
