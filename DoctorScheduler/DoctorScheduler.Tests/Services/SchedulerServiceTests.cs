@@ -5,7 +5,8 @@ using System.Web.Http.Results;
 using DoctorScheduler.Application.Dtos;
 using DoctorScheduler.API.Controllers;
 using DoctorScheduler.IntegrationTests.Extensions;
-using DoctorScheduler.Tests.Builders;
+using DoctorScheduler.TestUtils.Builders;
+using DoctorScheduler.TestUtils.Builders.Dtos;
 using NUnit.Framework;
 
 namespace DoctorScheduler.IntegrationTests.Services

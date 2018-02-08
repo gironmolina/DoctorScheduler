@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DoctorScheduler.CrossCutting.Enums;
+using DoctorScheduler.CrossCutting.Exceptions;
 using DoctorScheduler.CrossCutting.Extensions;
 using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Entities;
@@ -59,7 +60,7 @@ namespace DoctorScheduler.Domain.Services
             var slotDuration = schedulerEntity.SlotDurationMinutes;
             if (slotDuration <= 0)
             {
-                return null;
+                throw new SchedulerServiceException("The slot duration cannot be lower or equals to 0.");
             }
 
             var hourRows = new List<WeekHoursEntity>();

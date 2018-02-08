@@ -1,8 +1,7 @@
 ﻿using System;
 using DoctorScheduler.Application.Dtos;
-using DoctorScheduler.IntegrationTests.Builders;
 
-namespace DoctorScheduler.Tests.Builders
+namespace DoctorScheduler.TestUtils.Builders.Dtos
 {
     public class TakeSlotDtoBuilder
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using DoctorScheduler.Application.Dtos;
-using DoctorScheduler.Tests.Builders;
 
-namespace DoctorScheduler.IntegrationTests.Builders
+namespace DoctorScheduler.TestUtils.Builders.Dtos
 {
     public class SlotDtoBuilder
     {

@@ -3,7 +3,6 @@ using DoctorScheduler.CrossCutting.Helpers;
 using DoctorScheduler.CrossCutting.Interfaces;
 using DoctorScheduler.Domain.Interfaces;
 using DoctorScheduler.Domain.Services;
-using DoctorScheduler.Infrastructure.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Unity;
@@ -19,12 +18,19 @@ namespace DoctorScheduler.Domain.Tests
         public static void ConfigureDependecies()
         {
             AutoMapperConfig.RegisterMappings();
+            RegisterDependecies();
+        }
+
+        public static void RegisterDependecies()
+        {
             Container = new UnityContainer();
             Container.RegisterType<ISchedulerService, SchedulerService>();
             Container.RegisterType<IAppConfigSettings, AppConfigSettings>();
+        }
 
-            // Mocks
-            Container.RegisterInstance(typeof(ISchedulerRepository), MockRepository.GenerateMock<ISchedulerRepository>());
+        public static void MockDependency<T>() where T : class 
+        {
+            Container.RegisterInstance(typeof(T), MockRepository.GenerateMock<T>());
         }
     }
 }

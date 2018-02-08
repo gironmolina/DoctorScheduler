@@ -94,15 +94,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\BusySlotDtoBuilder.cs" />
-    <Compile Include="Builders\FacilityDtoBuilder.cs" />
-    <Compile Include="Builders\PatientDtoBuilder.cs" />
-    <Compile Include="Builders\SchedulerDtoBuilder.cs" />
-    <Compile Include="Builders\SchedulerWeekDtoBuilder.cs" />
-    <Compile Include="Builders\SlotDtoBuilder.cs" />
-    <Compile Include="Builders\TakeSlotDtoBuilder.cs" />
-    <Compile Include="Builders\WeekHoursDtoBuilder.cs" />
-    <Compile Include="Builders\WorkPeriodDtoBuilder.cs" />
     <Compile Include="Extensions\UnityContainerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SchedulerServiceTests.cs" />
@@ -128,6 +119,10 @@
     <ProjectReference Include="..\DoctorScheduler.Infrastucture\DoctorScheduler.Infrastructure.csproj">
       <Project>{552922DE-EC14-47D6-8DD2-B11C643F3B7D}</Project>
       <Name>DoctorScheduler.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoctorScheduler.TestUtils\DoctorScheduler.TestUtils.csproj">
+      <Project>{C43D197D-C2D8-49EF-AC5A-00B70BDA6155}</Project>
+      <Name>DoctorScheduler.TestUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\DoctorScheduler\DoctorScheduler.API.csproj">
       <Project>{363432A9-1EB5-4A00-9A36-24C06B30A2EC}</Project>
