@@ -9,7 +9,8 @@ namespace DoctorScheduler.TestUtils.Builders.Entities
 
         public BusySlotEntityBuilder WithDefaultValues()
         {
-            return null;
+            return this.Start(new DateTime().Date.AddHours(10))
+                .End(new DateTime().Date.AddHours(11));
         }
 
         public BusySlotEntityBuilder Start(DateTime start)

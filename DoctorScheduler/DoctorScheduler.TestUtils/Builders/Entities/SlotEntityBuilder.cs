@@ -9,7 +9,13 @@ namespace DoctorScheduler.TestUtils.Builders.Entities
 
         public SlotEntityBuilder WithDefaultValues()
         {
-            return null;
+            return WorkPeriod(new WorkPeriodEntityBuilder().WithDefaultValues()
+                    .Build())
+                    .BusySlots(new List<BusySlotEntity>
+                    {
+                        new BusySlotEntityBuilder().WithDefaultValues()
+                            .Build()
+                    });
         }
 
         public SlotEntityBuilder BusySlots(List<BusySlotEntity> busySlots)
