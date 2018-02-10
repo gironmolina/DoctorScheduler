@@ -80,13 +80,13 @@ namespace DoctorScheduler.Domain.Services
 
             foreach (var hourRow in hourRows)
             {
-                this.ValidateSlot(DaysEnum.Monday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Tuesday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Wednesday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Thursday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Friday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Saturday, hourRow, schedulerDictionary);
-                this.ValidateSlot(DaysEnum.Sunday, hourRow, schedulerDictionary);
+                hourRow.Monday = this.GetValidatedHour(DaysEnum.Monday, schedulerDictionary, hourRow.Monday);
+                hourRow.Tuesday = this.GetValidatedHour(DaysEnum.Tuesday, schedulerDictionary, hourRow.Tuesday);
+                hourRow.Wednesday = this.GetValidatedHour(DaysEnum.Wednesday, schedulerDictionary, hourRow.Wednesday);
+                hourRow.Thursday = this.GetValidatedHour(DaysEnum.Thursday, schedulerDictionary, hourRow.Thursday);
+                hourRow.Friday = this.GetValidatedHour(DaysEnum.Friday, schedulerDictionary, hourRow.Friday);
+                hourRow.Saturday = this.GetValidatedHour(DaysEnum.Saturday, schedulerDictionary, hourRow.Saturday);
+                hourRow.Sunday = this.GetValidatedHour(DaysEnum.Sunday, schedulerDictionary, hourRow.Sunday);
             }
 
             return new SchedulerWeekEntity
@@ -97,12 +97,9 @@ namespace DoctorScheduler.Domain.Services
             };
         }
 
-        private void ValidateSlot(DaysEnum day, WeekHoursEntity hourRow, Dictionary<int, SlotEntity> schedulerDictionary)
+        private TimeSpan? GetValidatedHour(DaysEnum day, Dictionary<DaysEnum, SlotEntity> schedulerDictionary, TimeSpan? hour)
         {
-            var dayProperty = hourRow.GetType().GetProperty(day.ToString());
-            var hour = (TimeSpan?)dayProperty?.GetValue(hourRow);
-
-            var dayInfo = schedulerDictionary.FirstOrDefault(i => i.Key == (int)day).Value;
+            var dayInfo = schedulerDictionary.FirstOrDefault(i => i.Key == day).Value;
             if (dayInfo != null)
             {
                 var isBetweenRange1 = hour.IsBetween(new TimeSpan(dayInfo.WorkPeriod.StartHour, 0, 0),
@@ -120,26 +117,28 @@ namespace DoctorScheduler.Domain.Services
                 // Validate if it's an available slot
                 if (!isBetweenRange1 && !isBetweenRange2 || isBusySlot)
                 {
-                    dayProperty?.SetValue(hourRow, null);
+                    return null;
                 }
             }
             else
             {
-                dayProperty?.SetValue(hourRow, null);
+                return null;
             }
+
+            return hour;
         }
 
-        private Dictionary<int, SlotEntity> GetWeekDictionary(SchedulerEntity schedulerEntity)
+        private Dictionary<DaysEnum, SlotEntity> GetWeekDictionary(SchedulerEntity schedulerEntity)
         {
-            return new Dictionary<int, SlotEntity>
+            return new Dictionary<DaysEnum, SlotEntity>
             {
-                {0, schedulerEntity.Monday},
-                {1, schedulerEntity.Tuesday},
-                {2, schedulerEntity.Wednesday},
-                {3, schedulerEntity.Thursday},
-                {4, schedulerEntity.Friday},
-                {5, schedulerEntity.Saturday},
-                {6, schedulerEntity.Sunday},
+                {DaysEnum.Monday, schedulerEntity.Monday},
+                {DaysEnum.Tuesday, schedulerEntity.Tuesday},
+                {DaysEnum.Wednesday, schedulerEntity.Wednesday},
+                {DaysEnum.Thursday, schedulerEntity.Thursday},
+                {DaysEnum.Friday, schedulerEntity.Friday},
+                {DaysEnum.Saturday, schedulerEntity.Saturday},
+                {DaysEnum.Sunday, schedulerEntity.Sunday},
             };
         }
     }
