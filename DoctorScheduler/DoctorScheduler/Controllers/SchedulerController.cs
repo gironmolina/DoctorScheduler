@@ -54,7 +54,7 @@ namespace DoctorScheduler.API.Controllers
         /// <response code="500">Server found an unexpected error.</response>
         [HttpPost]
         [Route("api/v1/takeSlot")]
-        [SwaggerResponse(HttpStatusCode.OK, "Slot taked successfully")]
+        [SwaggerResponse(HttpStatusCode.OK, "Slot taken successfully")]
         public async Task<IHttpActionResult> TakeSlot([FromBody] TakeSlotDto slot)
         {
             try
